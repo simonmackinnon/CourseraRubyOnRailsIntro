@@ -58,7 +58,7 @@ class Solution
     @analyzers = Array.new 
     if File.exist? 'test.txt'
       File.foreach( 'test.txt' ).with_index do |line, line_num|
-        @analyzers.push(LineAnalyzer.new(line.chomp, line_num))
+        @analyzers.push(LineAnalyzer.new(line.chomp, line_num+1))
       end
     end
   end
@@ -76,8 +76,14 @@ class Solution
   end
 
   def print_highest_word_frequency_across_lines()
-    print highest_count_across_lines
-    print highest_count_words_across_lines
+    print "The following words have the highest word frequency per line:" 
+
+    highest_count_words_across_lines.each do |analyzer| 
+      print "\n#{analyzer.highest_wf_words} (appears in line #{analyzer.line_number})" 
+    end
+
+    #print highest_count_across_lines
+    #print highest_count_words_across_lines
   end
 
 
