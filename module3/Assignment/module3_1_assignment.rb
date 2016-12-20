@@ -7,8 +7,8 @@ class Recipe
 	default_params key: ENV["FOOD2FORK_KEY"]
 	format :json	
 
-	def self.for search_term
-		get("", query: {query: search_term})["elements"]
-	end
+  	def self.for (keyword)
+    	get("/search", query: {q: keyword})["recipes"]
+  	end
 
 end
